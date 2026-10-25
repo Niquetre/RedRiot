@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "REDRIOT",
+      "hasCanvas": false,
+      "bodyTextLen": 24,
+      "bodyTextHash": "d479dc974afd5ba119d7dcc46ee3364ca6e01e4b0feb9773a5a5b59f88c33ce9",
+      "bodyTextPrefix": "REDRIOT Tu día, en orden",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "REDRIOT",
+      "hasCanvas": false,
+      "bodyTextLen": 24,
+      "bodyTextHash": "d479dc974afd5ba119d7dcc46ee3364ca6e01e4b0feb9773a5a5b59f88c33ce9",
+      "bodyTextPrefix": "REDRIOT Tu día, en orden",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+:root {
+  --stage: #ebe4df;
+  --bg: #f6f3f0;
+  --surface: #fffcfa;
+  --fg: #1c1214;
+  --muted: #6f6164;
+  --primary: #c4162c;
+  --primary-fg: #fff7f6;
+  --line: #e4dbd6;
+  --soft: #f8e8ea;
+  --swatch-1: #c4162c;
+  --swatch-2: #8f1d32;
+  --swatch-3: #d4534a;
+  --swatch-4: #a34b32;
+  --swatch-5: #5c2430;
+  --shadow: 0 12px 30px -20px rgb(28 18 20 / 0.45);
+  color-scheme: light;
+}
+
+:root.dark {
+  --stage: #070506;
+  --bg: #100c0d;
+  --surface: #1b1516;
+  --fg: #f7f2f3;
+  --muted: #b7a8aa;
+  --primary: #ff4d60;
+  --primary-fg: #2a060b;
+  --line: #34282a;
+  --soft: #2c171b;
+  --swatch-1: #ff4d60;
+  --swatch-2: #e23b68;
+  --swatch-3: #ff8a7a;
+  --swatch-4: #e08a62;
+  --swatch-5: #d7b4b8;
+  --shadow: 0 0 0 0 transparent;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-stage: var(--stage);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
+  --color-line: var(--line);
+  --color-soft: var(--soft);
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  input, select, textarea { font: inherit; color: inherit; }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+.pad-top { padding-top: env(safe-area-inset-top); }
+.pad-nav { padding-bottom: calc(5.75rem + env(safe-area-inset-bottom)); }
+.nav-safe { padding-bottom: env(safe-area-inset-bottom); }
+.sheet-safe { padding-bottom: calc(1rem + env(safe-area-inset-bottom)); }
+
+.swatch-c1 { background: var(--swatch-1); }
+.swatch-c2 { background: var(--swatch-2); }
+.swatch-c3 { background: var(--swatch-3); }
+.swatch-c4 { background: var(--swatch-4); }
+.swatch-c5 { background: var(--swatch-5); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

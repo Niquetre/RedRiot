@@ -1,0 +1,1090 @@
+REDRIOT — ASISTENTE PERSONAL INTEGRAL
+
+Aplicación web progresiva (PWA) para iPhone, desarrollada desde GitHub
+
+1. OBJETIVO DEL PROYECTO
+
+Quiero desarrollar una aplicación personal llamada REDRIOT, destinada a organizar mi vida académica, mis tareas, mis horarios, mis eventos, mis rutinas, mis hábitos y mi tiempo.
+
+La aplicación debe funcionar como un asistente personal accesible desde mi iPhone, con una interfaz moderna, rápida, intuitiva y adaptada a dispositivos móviles.
+
+El proyecto se desarrollará utilizando GitHub desde un iPhone. Por eso, necesito una estructura de código organizada, instrucciones claras y herramientas que permitan editar, publicar y mantener la aplicación sin depender de una computadora.
+
+La aplicación debe construirse como una Progressive Web App (PWA) que pueda publicarse en una dirección HTTPS e instalarse desde Safari en la pantalla de inicio del iPhone.
+
+No quiero una simple página web ni una maqueta visual. Quiero una aplicación funcional con almacenamiento persistente, navegación completa, calendario, tareas, rutinas, hábitos, notificaciones y estadísticas.
+
+Objetivos principales
+
+1. Organizar mis actividades escolares y personales.
+2. Administrar horarios y calendarios.
+3. Registrar tareas y fechas de entrega.
+4. Recibir recordatorios y notificaciones.
+5. Crear rutinas y alarmas compatibles con iOS.
+6. Gestionar hábitos mediante checklists.
+7. Planificar sesiones de estudio.
+8. Priorizar actividades importantes.
+9. Preparar el día siguiente.
+10. Conservar mis datos de forma segura.
+11. Poder instalar la aplicación en mi iPhone.
+12. Poder actualizarla mediante GitHub sin tener que reinstalarla manualmente cada vez.
+
+Prioridad absoluta: funcionalidad real, compatibilidad con iOS, almacenamiento persistente, facilidad de uso y una experiencia similar a la de una aplicación nativa.
+
+⸻
+
+2. TECNOLOGÍA Y ARQUITECTURA
+
+Selecciona una arquitectura sencilla, estable y compatible con el desarrollo desde un iPhone.
+
+2.1. Tecnologías propuestas
+
+Utiliza preferentemente:
+
+* HTML5.
+* CSS3.
+* JavaScript moderno o TypeScript.
+* Una arquitectura de componentes ligera, como React con Vite, si la herramienta de desarrollo lo permite.
+* Web App Manifest.
+* Service Worker.
+* Cache API.
+* IndexedDB para almacenamiento local.
+* Supabase u otro servicio compatible para autenticación, base de datos y sincronización cuando sea necesario.
+* Web Push API para las notificaciones push.
+* GitHub para almacenar y versionar el código.
+* GitHub Pages para publicar la aplicación estática, si la arquitectura seleccionada es compatible.
+
+Puedes proponer una arquitectura diferente si mejora significativamente la compatibilidad, pero debes explicar por qué.
+
+No agregues dependencias innecesarias ni servicios de pago obligatorios sin explicar su función.
+
+2.2. Separación entre frontend y backend
+
+Diseña la aplicación de forma que la interfaz y los servicios de servidor estén claramente separados.
+
+El frontend debe encargarse de:
+
+* Mostrar las pantallas.
+* Gestionar formularios.
+* Presentar tareas y eventos.
+* Mostrar el calendario.
+* Administrar las interacciones.
+* Guardar datos localmente cuando corresponda.
+* Registrar las preferencias del usuario.
+* Solicitar permisos de notificación mediante acciones explícitas.
+
+El backend, cuando sea necesario, debe encargarse de:
+
+* Gestionar cuentas.
+* Sincronizar datos.
+* Almacenar información en la nube.
+* Procesar solicitudes de notificaciones push.
+* Mantener las suscripciones de los dispositivos.
+* Programar avisos que deban enviarse en el futuro.
+* Validar las solicitudes.
+* Proteger la información.
+
+No intentes implementar operaciones de servidor utilizando únicamente JavaScript ejecutado en el navegador.
+
+2.3. Restricciones de GitHub Pages
+
+Si utilizas GitHub Pages:
+
+* Publica el frontend mediante HTTPS.
+* Configura correctamente las rutas y la ubicación base de la aplicación.
+* Comprueba que los recursos funcionen bajo la dirección real del proyecto.
+* Evita utilizar rutas absolutas que rompan la aplicación cuando se publique dentro de un subdirectorio.
+* Incluye instrucciones de despliegue desde GitHub.
+* Configura las actualizaciones para que no dejen a los usuarios atrapados en una versión antigua de la aplicación.
+
+No supongas que GitHub Pages proporciona una base de datos, un servidor de notificaciones o funciones backend.
+
+Si se necesitan esas funciones, intégralas con un proveedor externo apropiado.
+
+⸻
+
+3. COMPATIBILIDAD CON IPHONE Y SAFARI
+
+La aplicación debe estar diseñada prioritariamente para iPhone.
+
+3.1. Diseño móvil
+
+Implementa:
+
+* Interfaz adaptable a pantallas pequeñas.
+* Botones cómodos para utilizar con los dedos.
+* Navegación inferior.
+* Formularios sencillos.
+* Tipografía legible.
+* Tarjetas organizadas.
+* Modo claro y oscuro.
+* Compatibilidad con la orientación vertical.
+* Tratamiento adecuado de las áreas seguras de la pantalla.
+* Respeto por los espacios del indicador de inicio y la barra de estado.
+* Ausencia de desplazamientos horizontales innecesarios.
+
+Utiliza las propiedades CSS correspondientes para las áreas seguras del dispositivo y evita que los botones queden ocultos detrás de los elementos del sistema.
+
+3.2. Instalación como PWA
+
+La aplicación debe poder instalarse desde Safari mediante la opción de compartir y añadir a la pantalla de inicio.
+
+Cuando esté instalada, debe abrirse en modo aplicación, sin mostrar la interfaz habitual del navegador.
+
+Incluye:
+
+* Iconos apropiados.
+* Nombre de la aplicación: REDRIOT.
+* Nombre corto: REDRIOT.
+* Color del tema.
+* Color de fondo.
+* Configuración de orientación cuando sea necesaria.
+* Pantalla de carga apropiada.
+* Diseño independiente del navegador.
+
+No afirmes que está instalada si solamente se ha abierto desde Safari.
+
+Incluye instrucciones visibles para instalarla cuando se detecte que el usuario está accediendo desde un navegador compatible.
+
+La aplicación debe seguir siendo utilizable desde el navegador aunque no esté instalada, pero debe explicar las diferencias entre ambos modos cuando sean relevantes.
+
+⸻
+
+4. MANIFIESTO WEB Y SERVICE WORKER
+
+Implementa los archivos necesarios para que REDRIOT funcione como una PWA.
+
+4.1. Archivo manifest.json
+
+Crea un manifiesto válido que incluya, como mínimo:
+
+* name.
+* short_name.
+* start_url.
+* scope.
+* display configurado en standalone.
+* background_color.
+* theme_color.
+* icons con los tamaños apropiados.
+
+Comprueba que las rutas del manifiesto y de los iconos funcionen correctamente en la dirección publicada.
+
+Si la aplicación se aloja bajo una ruta de proyecto de GitHub Pages, configura correctamente el alcance de la PWA.
+
+4.2. Service Worker
+
+Implementa un Service Worker que permita:
+
+* Almacenar en caché los recursos necesarios.
+* Mejorar la velocidad de carga.
+* Gestionar estrategias de actualización.
+* Mostrar una experiencia de carga apropiada.
+* Recibir eventos push cuando el navegador y el sistema operativo lo permitan.
+* Procesar eventos de notificación.
+* Abrir la sección adecuada al tocar una notificación.
+
+Utiliza estrategias de caché que eviten mostrar información obsoleta cuando sea importante.
+
+No almacenes información personal sensible en cachés públicas innecesarias.
+
+Controla las actualizaciones para evitar problemas cuando se publique una nueva versión.
+
+La aplicación debe informar cuando haya una actualización disponible y permitir aplicarla de manera segura.
+
+⸻
+
+5. NOTIFICACIONES PUSH EN IOS
+
+Esta es una de las funciones más importantes de REDRIOT.
+
+Quiero recibir recordatorios en mi iPhone incluso cuando no tenga abierta la interfaz de la aplicación, siempre que el sistema operativo y la configuración lo permitan.
+
+5.1. Requisitos de iOS
+
+Implementa las notificaciones push web respetando los requisitos de Apple.
+
+Considera los siguientes aspectos:
+
+1. En iOS 16.4 o posterior, las notificaciones push web están disponibles para aplicaciones web añadidas a la pantalla de inicio.
+2. El usuario debe instalar la aplicación desde Safari utilizando la opción de añadir a la pantalla de inicio para utilizar las notificaciones push web compatibles.
+3. El manifiesto debe estar correctamente configurado para funcionar en modo aplicación.
+4. El permiso de notificaciones debe solicitarse como consecuencia directa de una acción del usuario.
+5. Debe existir un botón explícito llamado «Activar notificaciones».
+6. El permiso no debe solicitarse automáticamente al abrir la aplicación.
+7. Debe comprobarse si el navegador y el contexto actual admiten las funciones necesarias.
+
+No supongas que la aplicación puede enviar notificaciones push si no está instalada, si no se han concedido los permisos o si el dispositivo no admite la función.
+
+5.2. Flujo para activar las notificaciones
+
+Implementa este flujo:
+
+Paso 1: el usuario abre REDRIOT.
+
+Paso 2: si las notificaciones no están configuradas, la aplicación muestra una explicación breve.
+
+Paso 3: el usuario pulsa «Activar notificaciones».
+
+Paso 4: si todavía no ha instalado la PWA y el sistema requiere la instalación, muestra instrucciones para añadirla a la pantalla de inicio.
+
+Paso 5: solicita el permiso del navegador únicamente como respuesta a la acción del usuario.
+
+Paso 6: si el permiso es concedido, registra la suscripción push del dispositivo.
+
+Paso 7: envía la suscripción al backend para poder enviar notificaciones en el futuro.
+
+Paso 8: muestra una notificación de prueba cuando exista un servicio de envío configurado y el usuario lo solicite.
+
+Si el permiso es rechazado, explica cómo habilitarlo en la configuración correspondiente, sin repetir solicitudes de manera insistente.
+
+5.3. Backend para las notificaciones
+
+No intentes enviar notificaciones push únicamente desde el frontend.
+
+Implementa un backend o servicio compatible que pueda:
+
+* Guardar las suscripciones push.
+* Asociarlas al usuario o dispositivo correspondiente.
+* Generar mensajes.
+* Enviar las notificaciones.
+* Procesar errores de entrega.
+* Gestionar suscripciones caducadas.
+* Eliminar suscripciones inválidas.
+* Programar avisos futuros.
+
+Puedes utilizar Supabase con funciones de servidor y un sistema de programación compatible, u otra arquitectura equivalente.
+
+Si eliges otro proveedor, explica cómo se integra.
+
+Las claves privadas y los secretos del servidor nunca deben incluirse en el código público de GitHub.
+
+Las claves públicas que deban utilizarse en el frontend pueden exponerse cuando el protocolo correspondiente lo requiera, pero los secretos privados deben permanecer en el backend.
+
+5.4. Recordatorios programados
+
+Quiero configurar notificaciones para:
+
+* Entregas de tareas.
+* Exámenes.
+* Eventos.
+* Clases.
+* Rutinas.
+* Hábitos.
+* Sesiones de estudio.
+* Preparación del día siguiente.
+
+Cada recordatorio debe incluir la fecha, la hora y el contenido que corresponde.
+
+El backend debe programar las notificaciones que requieran ejecución en una fecha futura, cuando la arquitectura lo permita.
+
+No dependas exclusivamente de temporizadores de JavaScript que solo funcionen mientras la página está abierta.
+
+Si se utiliza un proveedor externo de notificaciones, configura las tareas programadas necesarias.
+
+Si el proveedor elegido no permite programar notificaciones directamente, implementa una alternativa compatible o explica claramente qué servicio adicional se necesita.
+
+5.5. Contenido de las notificaciones
+
+Ejemplos:
+
+* «REDRIOT: mañana debes entregar el trabajo de Matemática».
+* «REDRIOT: tu examen de Historia es mañana».
+* «REDRIOT: es hora de comenzar tu rutina».
+* «REDRIOT: tenés una sesión de estudio programada».
+* «REDRIOT: revisá tus pendientes para mañana».
+
+Las notificaciones deben ser claras y concisas.
+
+Al tocar una notificación, la aplicación debe abrir la pantalla o el registro relacionado cuando sea técnicamente posible.
+
+No muestres información privada innecesaria en la pantalla de bloqueo.
+
+5.6. Reprogramación y cancelación
+
+Si modifico la fecha de una tarea, sus recordatorios deben actualizarse.
+
+Si elimino la tarea, deben cancelarse los avisos asociados que todavía estén pendientes.
+
+Si completo una tarea, deben cancelarse sus recordatorios pendientes cuando corresponda.
+
+Evita duplicados cuando se edite un registro o se vuelva a guardar una suscripción.
+
+Registra los identificadores de los avisos programados para poder gestionarlos.
+
+Si una notificación ya fue enviada, no intentes eliminarla como si todavía estuviera programada.
+
+5.7. Limitaciones reales
+
+Distingue entre:
+
+* Notificaciones push enviadas por un servidor.
+* Notificaciones locales programadas en el dispositivo.
+* Avisos internos que aparecen solamente mientras la aplicación está abierta.
+
+No afirmes que las tres modalidades son equivalentes.
+
+La implementación debe documentar las capacidades de la plataforma seleccionada.
+
+Las notificaciones push requieren conectividad para recibir nuevos mensajes desde el servidor. Los límites de entrega, los permisos, los modos de ahorro de energía y las condiciones del dispositivo pueden afectar su recepción.
+
+No prometas que todas las alarmas funcionarán exactamente como las de una aplicación nativa.
+
+Si una rutina necesita una alarma local con garantías que la PWA no puede ofrecer, informa de la limitación y ofrece una alternativa compatible.
+
+⸻
+
+6. ALMACENAMIENTO LOCAL Y SINCRONIZACIÓN
+
+REDRIOT debe conservar mis datos de manera fiable.
+
+6.1. Almacenamiento local
+
+Utiliza IndexedDB para almacenar los registros que necesiten persistir en el dispositivo.
+
+Incluye:
+
+* Tareas.
+* Materias.
+* Horarios.
+* Eventos.
+* Rutinas.
+* Hábitos.
+* Notas.
+* Sesiones de estudio.
+* Preferencias.
+* Historial.
+* Datos de configuración.
+
+No dependas exclusivamente de variables de JavaScript ni de almacenamiento temporal.
+
+6.2. Funcionamiento sin conexión
+
+Permite consultar los datos almacenados localmente cuando no haya conexión a Internet.
+
+Cuando sea posible, permite crear o modificar tareas y eventos sin conexión.
+
+Si existe sincronización con un servidor, guarda temporalmente los cambios y sincronízalos cuando se recupere la conexión.
+
+No pierdas los cambios locales si falla una solicitud al servidor.
+
+Muestra claramente si hay cambios pendientes de sincronización.
+
+Las funciones que dependan de un backend o de una conexión deben identificarse correctamente.
+
+6.3. Sincronización opcional
+
+Si implementas sincronización entre dispositivos, utiliza una base de datos en la nube.
+
+Supabase es una opción posible, pero puedes elegir otro servicio compatible.
+
+La sincronización debe contemplar:
+
+* Identificación del usuario.
+* Autenticación.
+* Permisos de acceso.
+* Conflictos entre cambios.
+* Cambios realizados sin conexión.
+* Eliminaciones.
+* Recuperación ante errores.
+* Separación de datos entre usuarios.
+
+Si la aplicación se mantiene como una herramienta local de un solo dispositivo, no añadas una cuenta obligatoria sin una necesidad real.
+
+⸻
+
+7. DISEÑO VISUAL DE REDRIOT — GUÍA DE ESTILO UI/UX
+
+Esta sección define la identidad visual obligatoria de REDRIOT. Todos los módulos y pantallas deben respetar esta guía para mantener una experiencia coherente.
+
+7.1. Concepto general y estética
+
+Utiliza un estilo moderno, limpio, minimalista y elegante, basado en tarjetas flotantes con esquinas redondeadas y una jerarquía visual muy clara.
+
+La interfaz debe estar orientada a la gestión personal, escolar y de actividades.
+
+No incluyas referencias a entrenamientos de gimnasio. El enfoque de REDRIOT es la organización académica, las tareas, el calendario, las rutinas personales, los hábitos, el estudio y la planificación diaria.
+
+Prioriza la facilidad de uso, la legibilidad y el acceso rápido a las funciones importantes.
+
+Evita las pantallas sobrecargadas, los efectos excesivos, las animaciones innecesarias y los elementos puramente decorativos que dificulten la navegación.
+
+7.2. Paleta de colores e identidad visual roja
+
+La identidad visual de REDRIOT debe estar basada en una gama de rojos dinámicos y elegantes, adaptados tanto al modo claro como al modo oscuro.
+
+Color primario
+
+Utiliza rojo carmesí o rojo brillante para:
+
+* Botones de acciones principales.
+* Pestañas activas.
+* Elementos seleccionados.
+* Indicadores de navegación.
+* Barras de progreso.
+* Porcentajes completados.
+* Iconos destacados.
+* Elementos interactivos importantes.
+
+El rojo debe funcionar como color de identidad de REDRIOT, sin utilizarse de forma excesiva hasta dificultar la lectura.
+
+Modo claro (Light Theme)
+
+* Fondo general: gris muy claro o blanco puro.
+* Tarjetas y contenedores: blanco sólido.
+* Sombras: sutiles, para generar profundidad sin sobrecargar la interfaz.
+* Textos principales: gris oscuro.
+* Textos secundarios: tonos grises legibles.
+* Acciones y selecciones: rojo carmesí o rojo brillante.
+* Separadores: grises suaves.
+
+Modo oscuro (Dark Theme)
+
+* Fondo general: negro profundo o azul oscuro espacial.
+* Tarjetas y contenedores: gris oscuro, con separación visual mediante bordes sutiles.
+* Textos principales: blanco.
+* Textos secundarios: gris claro.
+* Acciones y selecciones: tonos rojos que mantengan suficiente contraste.
+* Separadores: tonos oscuros ligeramente diferenciados del fondo.
+
+Asegúrate de que los textos, iconos, botones y estados seleccionados mantengan una legibilidad adecuada en ambos temas.
+
+7.3. Selector de apariencia: modo claro y oscuro
+
+La interfaz debe incorporar un interruptor accesible o un botón de configuración rápida en la barra superior o en el perfil.
+
+Debe permitir cambiar instantáneamente entre:
+
+* Modo claro.
+* Modo oscuro.
+
+La preferencia elegida debe guardarse automáticamente en el almacenamiento local y mantenerse al cerrar y volver a abrir REDRIOT.
+
+El cambio de tema debe actualizar todas las pantallas, tarjetas, menús, formularios, iconos, barras de navegación y elementos interactivos.
+
+No implementes un selector que cambie únicamente el fondo de la pantalla principal.
+
+7.4. Navegación inferior
+
+Implementa una barra de navegación fija en la parte inferior, adaptada a las pantallas del iPhone.
+
+Debe incluir iconos limpios acompañados de etiquetas de texto.
+
+La opción activa debe resaltarse en rojo.
+
+La navegación debe ser táctil, intuitiva y mantener un tamaño cómodo para los dedos.
+
+La barra debe respetar las áreas seguras del dispositivo y no quedar oculta detrás del indicador de inicio de iOS.
+
+Las secciones estándar de referencia para el diseño son:
+
+* Inicio.
+* Comunidad / Gestión.
+* Código QR / Escáner.
+* Perfil.
+
+Sin embargo, la navegación funcional de REDRIOT debe respetar los módulos definidos en este proyecto:
+
+1. Inicio.
+2. Colegio.
+3. Calendario.
+4. Rutinas.
+5. Hábitos.
+6. Estudio.
+7. Pendientes.
+8. Estadísticas.
+9. Configuración.
+
+Organiza las secciones secundarias mediante submenús o accesos internos cuando sea necesario para conservar una navegación inferior limpia.
+
+No agregues una función de comunidad ni un escáner QR como módulos nuevos: las referencias de comunidad, QR y escáner son únicamente orientaciones visuales de la guía de estilo. La aplicación debe conservar las funciones y secciones funcionales especificadas en este documento.
+
+7.5. Tarjetas y componentes de contenido
+
+Utiliza tarjetas de contenido con:
+
+* Bordes redondeados.
+* Espaciado interno consistente.
+* Separación clara entre elementos.
+* Sombras sutiles en el modo claro.
+* Bordes discretos en el modo oscuro.
+* Información organizada jerárquicamente.
+* Acciones claramente identificables.
+
+Implementa barras de progreso lineales o circulares en tonos rojos para mostrar métricas, tareas completadas, hábitos, sesiones de estudio y porcentajes de avance.
+
+Las barras y estadísticas deben representar datos reales de la aplicación.
+
+Organiza las listas por horarios, categorías, fechas o estados, utilizando separadores tenues que no distraigan de la información principal.
+
+7.6. Cabeceras y encabezados
+
+Utiliza una tipografía sans-serif moderna, clara y legible.
+
+Las cabeceras deben mantener una estructura coherente entre las diferentes pantallas.
+
+Cuando resulte apropiado, incorpora:
+
+* Un menú desplegable o icono de menú hamburguesa a la izquierda.
+* El título de la sección.
+* El avatar del usuario o el acceso a las notificaciones a la derecha.
+
+Evita colocar demasiados controles en una misma cabecera.
+
+Las acciones principales deben ser fáciles de encontrar y utilizar desde una pantalla pequeña.
+
+7.7. Diseño adaptable y consistencia
+
+Todos los módulos de REDRIOT deben seguir la misma identidad visual.
+
+Mantén coherencia en:
+
+* Colores.
+* Tipografía.
+* Espaciados.
+* Tamaños de botones.
+* Bordes redondeados.
+* Iconografía.
+* Tarjetas.
+* Formularios.
+* Mensajes de error.
+* Indicadores de carga.
+* Estados vacíos.
+* Animaciones.
+
+Adapta el diseño a pantallas pequeñas sin perder funcionalidades.
+
+Respeta las preferencias de accesibilidad del dispositivo y evita animaciones excesivas.
+
+No sustituyas funciones reales por tarjetas, iconos, botones o gráficos decorativos.
+
+⸻
+
+8. PANTALLA PRINCIPAL: MI DÍA
+
+Muestra:
+
+* Fecha actual.
+* Próxima clase.
+* Horario del día.
+* Tareas pendientes.
+* Próximas entregas.
+* Exámenes próximos.
+* Eventos.
+* Rutinas.
+* Hábitos.
+* Sesiones de estudio.
+* Recordatorios.
+* Progreso diario.
+* Las tres prioridades principales.
+
+Incluye un botón «+» para registrar rápidamente una nueva actividad.
+
+Cada elemento debe poder abrirse para ver sus detalles.
+
+Permite completar tareas y hábitos desde esta pantalla sin navegar por múltiples secciones.
+
+Actualiza el contenido cuando cambien los registros.
+
+Utiliza la identidad visual de REDRIOT: tarjetas redondeadas, tonos rojos para las acciones y el progreso, buena jerarquía visual y compatibilidad con ambos temas.
+
+⸻
+
+9. MÓDULO ESCOLAR
+
+Implementa un administrador escolar completo.
+
+9.1. Gestión de materias
+
+El módulo escolar debe permitir administrar las materias de forma completa e independiente.
+
+Para cada materia, permite:
+
+* Agregar una materia nueva.
+* Asignarle un nombre.
+* Registrar el nombre del profesor correspondiente.
+* Modificar los datos de una materia existente.
+* Renombrar una materia.
+* Cambiar el nombre del profesor.
+* Eliminar una materia.
+
+La creación y edición de materias deben realizarse mediante formularios sencillos y adaptados al iPhone.
+
+La lista de materias debe actualizarse automáticamente después de crear, modificar, renombrar o eliminar un registro.
+
+Los cambios deben guardarse de forma persistente.
+
+Al eliminar una materia que esté vinculada a tareas, exámenes, horarios u otros registros, gestiona las relaciones sin provocar errores ni pérdidas accidentales de información. Solicita confirmación antes de realizar eliminaciones que puedan afectar otros registros.
+
+No crees materias ficticias como datos definitivos. Si se necesitan datos de ejemplo para una demostración, deben identificarse claramente como ejemplos.
+
+9.2. Horarios escolares
+
+Implementa un horario escolar que permita organizar las materias por día y hora.
+
+Debe ser posible:
+
+* Agregar materias al horario.
+* Seleccionar una materia existente.
+* Modificar los días y horarios.
+* Cambiar el aula cuando corresponda.
+* Editar una clase programada.
+* Eliminar una clase del horario.
+* Consultar el horario diario.
+* Consultar el horario semanal.
+* Registrar cambios temporales sin modificar el horario habitual.
+
+Cada clase del horario debe estar vinculada a una materia existente.
+
+Al renombrar una materia, el nuevo nombre debe reflejarse en el horario y en los registros vinculados.
+
+Si se modifica el nombre del profesor de una materia, la información actualizada debe aparecer donde corresponda.
+
+Distingue entre eliminar una clase del horario y eliminar la materia completa. Eliminar una clase no debe eliminar automáticamente la materia.
+
+Permite gestionar las materias y sus horarios sin tener que editar directamente el código.
+
+9.3. Tareas
+
+Cada tarea debe incluir:
+
+* Nombre.
+* Materia.
+* Descripción.
+* Fecha de creación.
+* Fecha límite.
+* Hora de entrega.
+* Prioridad.
+* Estado.
+* Tiempo estimado.
+* Subtareas.
+* Notas.
+* Archivos adjuntos cuando sea posible.
+* Recordatorios.
+
+Las tareas deben poder vincularse con las materias creadas en el módulo escolar.
+
+9.4. Exámenes
+
+Permite registrar fechas, materias, temas y sesiones de preparación.
+
+Los exámenes deben poder vincularse con las materias existentes.
+
+9.5. Planificación de estudio
+
+Permite distribuir sesiones de estudio en horarios disponibles.
+
+Vincula las sesiones con las tareas y evaluaciones correspondientes.
+
+⸻
+
+10. CALENDARIO
+
+Implementa un calendario mensual, semanal y diario.
+
+Permite agregar, editar, eliminar y buscar eventos.
+
+Cada evento debe incluir nombre, fecha, hora, descripción, categoría, prioridad y recordatorios.
+
+Admite eventos recurrentes.
+
+Integra los horarios, las tareas, los exámenes, las rutinas y las sesiones de estudio sin crear duplicados.
+
+Detecta conflictos de horarios.
+
+Permite modificar una sola ocurrencia de un evento recurrente o toda la serie.
+
+⸻
+
+11. CREACIÓN RÁPIDA DE ACTIVIDADES
+
+El botón «+» debe permitir crear:
+
+* Tareas.
+* Eventos.
+* Recordatorios.
+* Exámenes.
+* Hábitos.
+* Rutinas.
+* Notas.
+
+La creación rápida debe requerir pocos datos.
+
+Por ejemplo, para registrar una tarea, solicita inicialmente el título, la materia y la fecha de entrega.
+
+Los demás campos deben ser opcionales.
+
+Después de guardar, actualiza automáticamente los módulos relacionados.
+
+⸻
+
+12. SISTEMA DE PRIORIDADES
+
+Cada tarea debe tener importancia y urgencia independientes.
+
+Importancia:
+
+* Baja.
+* Media.
+* Alta.
+
+Urgencia:
+
+* Sin apuro.
+* Próxima.
+* Para hoy.
+* Vencida.
+
+Crea una sección llamada «Hacé esto primero».
+
+Debe mostrar las tres actividades que más convenga atender, teniendo en cuenta las fechas límite, la importancia, el tiempo estimado y los compromisos existentes.
+
+Permite modificar las prioridades manualmente.
+
+Incluye sugerencias de planificación, pero no muevas actividades sin mi autorización.
+
+⸻
+
+13. BANDEJA DE ENTRADA DE PENDIENTES
+
+Crea un espacio para guardar ideas y actividades sin fecha definida.
+
+Permite convertir cada elemento en una tarea, un evento o un recordatorio.
+
+Incluye búsqueda, categorías, notas, edición, archivo y eliminación.
+
+Evita crear duplicados durante las conversiones.
+
+⸻
+
+14. RUTINAS Y ALARMAS
+
+Permite crear rutinas formadas por varios pasos.
+
+Cada rutina debe tener horarios, frecuencia, duración, días de repetición y recordatorios.
+
+Incluye checklists para cada paso.
+
+Permite pausar, reprogramar y modificar las rutinas.
+
+Utiliza notificaciones compatibles con iOS y documenta sus limitaciones.
+
+No confundas una notificación push con una alarma local del dispositivo.
+
+⸻
+
+15. HÁBITOS FLEXIBLES
+
+Permite establecer hábitos diarios, semanales, mensuales o personalizados.
+
+Admite objetivos como completar una actividad cuatro veces por semana.
+
+Incluye checklists, historial, estadísticas y rachas de constancia.
+
+Los días no programados no deben contar como incumplimientos.
+
+Permite marcar las actividades como completadas, omitidas o no aplicables.
+
+⸻
+
+16. MODO DE CONCENTRACIÓN
+
+Incluye un temporizador de estudio con tiempos configurables.
+
+Permite iniciar, pausar, reanudar y finalizar sesiones.
+
+Registra el tiempo real de concentración, excluyendo las pausas.
+
+Vincula las sesiones con tareas, materias o exámenes.
+
+Muestra una interfaz minimalista y permite consultar el historial.
+
+⸻
+
+17. PREPARACIÓN DEL DÍA SIGUIENTE
+
+Crea una sección llamada «Preparar mañana».
+
+Muestra las clases, tareas, exámenes, eventos y rutinas del día siguiente.
+
+Incluye una checklist personalizable para revisar la mochila, los materiales, las tareas y los horarios.
+
+Permite reprogramar actividades atrasadas con autorización.
+
+Admite un recordatorio nocturno si las notificaciones están configuradas.
+
+⸻
+
+18. PLANIFICACIÓN SEMANAL
+
+Crea una vista semanal con todas las actividades.
+
+Incluye una opción llamada «Organizar mi semana».
+
+Esta función debe analizar las fechas de entrega, las clases, los eventos, las tareas y el tiempo disponible.
+
+Genera una propuesta de horarios editable.
+
+No programes actividades durante otros compromisos.
+
+No modifiques el calendario sin mi consentimiento.
+
+⸻
+
+19. NOTAS Y BÚSQUEDA GLOBAL
+
+Permite crear notas personales con título, contenido, categoría y etiquetas.
+
+Permite vincularlas a tareas, materias y eventos.
+
+Incluye un buscador global que permita encontrar cualquier registro.
+
+Los resultados deben poder abrirse directamente.
+
+⸻
+
+20. ESTADÍSTICAS
+
+Incluye estadísticas reales sobre:
+
+* Tareas completadas.
+* Entregas realizadas a tiempo.
+* Exámenes.
+* Tiempo de estudio.
+* Hábitos.
+* Rutinas.
+* Sesiones de concentración.
+* Cumplimiento semanal y mensual.
+
+No inventes datos.
+
+Distingue entre actividades completadas, omitidas, canceladas y pendientes.
+
+Utiliza tarjetas y gráficos coherentes con la identidad visual de REDRIOT, con tonos rojos para representar los indicadores de progreso cuando corresponda.
+
+⸻
+
+21. SEGURIDAD Y PRIVACIDAD
+
+Implementa controles apropiados para proteger los datos.
+
+Si se utiliza Supabase:
+
+* Configura las políticas de seguridad de la base de datos.
+* Utiliza Row Level Security cuando corresponda.
+* Separa los datos de cada usuario.
+* Nunca incluyas claves privadas en el frontend.
+* Utiliza variables de entorno para los secretos del servidor.
+* Valida las solicitudes recibidas por el backend.
+* Protege las suscripciones de notificaciones.
+* Evita registrar información personal innecesaria.
+
+No publiques secretos en el repositorio de GitHub.
+
+Si se necesita un archivo de configuración con valores públicos, distingue claramente esos valores de las claves privadas.
+
+Incluye instrucciones para configurar las variables de entorno y los servicios externos.
+
+⸻
+
+22. ESTRUCTURA DEL PROYECTO EN GITHUB
+
+Organiza el repositorio de forma clara.
+
+Como mínimo, incluye los archivos equivalentes a:
+
+* index.html
+* manifest.json
+* service-worker.js
+* Archivos de estilos.
+* Archivos JavaScript o TypeScript.
+* Componentes de interfaz.
+* Módulos de tareas.
+* Módulos de calendario.
+* Módulos de hábitos y rutinas.
+* Módulos de notificaciones.
+* Módulos de almacenamiento.
+* Configuración de compilación.
+* Iconos de la aplicación.
+* Documentación.
+* Archivo .gitignore.
+* Configuración de despliegue.
+
+La estructura final puede variar según la arquitectura seleccionada.
+
+Incluye un archivo README que explique:
+
+1. Qué es REDRIOT.
+2. Qué tecnologías utiliza.
+3. Cómo configurar el proyecto.
+4. Cómo ejecutarlo.
+5. Cómo publicarlo en GitHub Pages o en otro alojamiento compatible.
+6. Cómo configurar el backend.
+7. Cómo configurar las notificaciones push.
+8. Cómo instalar la PWA desde Safari.
+9. Cómo actualizar la aplicación.
+10. Qué limitaciones existen.
+
+Desarrollo desde iPhone
+
+Las instrucciones deben poder seguirse desde un iPhone.
+
+No dependas de comandos que requieran obligatoriamente una computadora local.
+
+Si se necesita una compilación, utiliza una herramienta compatible con el navegador o una automatización de GitHub Actions cuando resulte apropiado.
+
+Si una tarea no puede realizarse cómodamente desde el iPhone, explica una alternativa.
+
+No asumas que todas las herramientas de desarrollo disponen de una terminal local o de acceso directo a los archivos del dispositivo.
+
+⸻
+
+23. PUBLICACIÓN Y DESPLIEGUE
+
+Configura el proyecto para publicarse en una dirección HTTPS.
+
+Si se utiliza GitHub Pages:
+
+* Configura el proceso de compilación.
+* Publica los archivos generados.
+* Ajusta las rutas del proyecto.
+* Verifica que el manifiesto sea accesible.
+* Verifica que el Service Worker esté registrado correctamente.
+* Comprueba que los iconos carguen.
+* Verifica que la aplicación se abra en la ruta correcta.
+* Comprueba que el funcionamiento no dependa de rutas locales.
+
+Si se utiliza un backend externo, documenta su configuración por separado.
+
+No simules que las notificaciones están conectadas si no existe un servicio capaz de enviarlas.
+
+⸻
+
+24. PRUEBAS OBLIGATORIAS
+
+Antes de finalizar, prueba la aplicación.
+
+Funciones generales
+
+* Crear, editar y eliminar registros.
+* Guardar y recuperar información.
+* Navegar entre secciones.
+* Buscar actividades.
+* Filtrar registros.
+* Evitar duplicados.
+
+Gestión de materias y horarios
+
+* Agregar materias.
+* Modificar materias.
+* Renombrar materias.
+* Eliminar materias.
+* Registrar y modificar el nombre del profesor.
+* Vincular materias con el horario escolar.
+* Modificar días, horas y aulas.
+* Eliminar una clase sin eliminar su materia.
+* Comprobar que los cambios se reflejen en los registros relacionados.
+* Comprobar que las eliminaciones no provoquen pérdidas accidentales de información.
+
+PWA
+
+* Validar el manifiesto.
+* Registrar el Service Worker.
+* Comprobar la instalación desde Safari.
+* Verificar el modo standalone.
+* Comprobar el funcionamiento de la caché.
+* Probar las actualizaciones.
+
+Notificaciones
+
+* Comprobar la solicitud de permisos mediante acción del usuario.
+* Probar una notificación.
+* Verificar el registro de suscripciones.
+* Comprobar el envío desde el backend.
+* Verificar los recordatorios programados.
+* Probar la cancelación y reprogramación.
+* Documentar las limitaciones de iOS.
+
+Datos
+
+* Comprobar la persistencia local.
+* Probar el funcionamiento sin conexión cuando corresponda.
+* Verificar la sincronización si está implementada.
+* Comprobar la recuperación ante errores.
+
+Interfaz
+
+* Probar diferentes tamaños de pantalla.
+* Verificar los controles táctiles.
+* Revisar la legibilidad.
+* Evitar que el contenido quede oculto detrás de las áreas seguras del iPhone.
+* Comprobar el modo claro.
+* Comprobar el modo oscuro.
+* Verificar que la preferencia de apariencia persista después de cerrar y reabrir la aplicación.
+* Comprobar la consistencia de la identidad visual en todos los módulos.
+
+No declares que una función ha sido probada si no se ha ejecutado realmente una prueba.
+
+⸻
+
+25. ORDEN DE DESARROLLO
+
+Desarrolla REDRIOT en etapas.
+
+Fase 1: interfaz principal, navegación, horario, materias, profesores, tareas y almacenamiento local.
+
+Fase 2: calendario, eventos, creación rápida, bandeja de entrada y prioridades.
+
+Fase 3: rutinas, hábitos, checklists y recordatorios.
+
+Fase 4: modo de concentración, sesiones de estudio y exámenes.
+
+Fase 5: preparación del día siguiente, planificación semanal y estadísticas.
+
+Fase 6: manifiesto PWA, Service Worker, instalación y funcionamiento sin conexión.
+
+Fase 7: backend, sincronización y notificaciones push reales.
+
+Fase 8: pruebas finales, seguridad, documentación y publicación.
+
+Puedes modificar el orden si las dependencias técnicas lo requieren, pero debes mantener todas las funciones solicitadas dentro del alcance del proyecto.
+
+No sustituyas funciones por botones decorativos.
+
+Si una función necesita un servicio externo, identifica cuál es y cómo configurarlo.
+
+⸻
+
+26. INSTRUCCIÓN FINAL
+
+Construye REDRIOT — ASISTENTE PERSONAL INTEGRAL como una PWA funcional, diseñada para utilizarse principalmente desde un iPhone y desarrollarse mediante GitHub.
+
+La aplicación debe reunir mi colegio, tareas, calendario, eventos, rutinas, hábitos, recordatorios, estudio y planificación personal.
+
+Debe tener almacenamiento persistente, una interfaz móvil excelente, funcionamiento sin conexión para las funciones compatibles y notificaciones push reales cuando se configuren los servicios necesarios.
+
+La identidad visual debe utilizar una paleta basada en rojos elegantes y dinámicos, tarjetas con esquinas redondeadas, una jerarquía visual clara, navegación inferior, tipografía moderna y modos claro y oscuro con preferencias persistentes.
+
+El módulo escolar debe permitir agregar, modificar, renombrar y eliminar materias, así como registrar y modificar el nombre de cada profesor. Los horarios deben estar vinculados a las materias y actualizarse correctamente cuando se modifiquen sus datos.
+
+Respeta las particularidades de iOS, Safari, los manifiestos PWA y los permisos de notificación.
+
+No inventes capacidades que la plataforma no ofrece. No simules integraciones inexistentes. No expongas secretos en GitHub. No declares que una función está terminada hasta haberla implementado y probado.
+
+Si falta una decisión técnica, selecciona la alternativa más sencilla y fiable que cumpla los requisitos, explica la elección y continúa con el desarrollo.
+
+Entregables finales
+
+Al finalizar, entrega:
+
+1. El código completo del proyecto.
+2. La estructura del repositorio.
+3. Los archivos de configuración.
+4. Las instrucciones de publicación.
+5. Las instrucciones para instalar la PWA en el iPhone.
+6. Las instrucciones para configurar las notificaciones.
+7. Las instrucciones para configurar la base de datos, si se utiliza.
+8. Una lista de pruebas realizadas.
+9. Una lista de limitaciones conocidas.
+10. Una guía para mantener y actualizar la aplicación.
+
+El resultado debe ser una aplicación personal real, útil y mantenible, no solamente una demostración visual.
